@@ -1,5 +1,6 @@
 package com.codeclan.example.bird_surveying.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -41,12 +42,14 @@ public class SurveyVisit {
     private int windSpeed;
 
     @Column(name="wind_direction")
+    @Enumerated(value=EnumType.STRING)
     private WindDirectionType windDirectionType;
 
     @Column(name="precipitation")
+    @Enumerated(value= EnumType.STRING)
     private PrecipitationType precipitation;
 
-    @JsonIgnoreProperties(value="survey_visit")
+    @JsonBackReference
     @OneToMany(mappedBy="surveyVisit", fetch = FetchType.LAZY)
     private List<BirdRecord> birdRecords;
 

@@ -20,12 +20,15 @@ public class BirdRecord {
     private int countBirds;
 
     @Column(name = "gender")
+    @Enumerated(value= EnumType.STRING)
     private GenderType gender;
 
     @Column(name = "age")
+    @Enumerated(value= EnumType.STRING)
     private AgeType ageClass;
 
     @Column(name = "activity")
+    @Enumerated(value= EnumType.STRING)
     private ActivityType activity;
 
     @Column(name = "comments")
