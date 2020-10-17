@@ -60,6 +60,14 @@ public class BirdRecord {
 
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getBtoCode() {
         return btoCode;
     }

@@ -72,6 +72,14 @@ public class SurveyVisit {
 
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public int getProjectNumber() {
         return projectNumber;
     }
@@ -144,11 +152,11 @@ public class SurveyVisit {
         this.windSpeed = windSpeed;
     }
 
-    public WindDirectionType getWindDirection() {
+    public WindDirectionType getWindDirectionType() {
         return windDirectionType;
     }
 
-    public void setWindDirection(WindDirectionType windDirectionType) {
+    public void setWindDirectionType(WindDirectionType windDirectionType) {
         this.windDirectionType = windDirectionType;
     }
 
