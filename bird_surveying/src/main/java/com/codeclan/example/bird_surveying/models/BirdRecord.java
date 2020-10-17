@@ -38,7 +38,7 @@ public class BirdRecord {
     private Long northing;
 
     @ManyToOne
-    @JoinColumn(name = "surveyVisit_id", nullable = false)
+    @JoinColumn(name = "survey_visit_id", nullable = false)
     private SurveyVisit surveyVisit;
 
     public BirdRecord(String btoCode, String species, int countBirds, GenderType gender,

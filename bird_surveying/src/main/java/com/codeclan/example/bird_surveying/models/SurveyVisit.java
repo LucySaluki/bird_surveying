@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="survey_visit")
+@Table(name="survey_visits")
 public class SurveyVisit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +47,7 @@ public class SurveyVisit {
     private PrecipitationType precipitation;
 
     @JsonIgnoreProperties(value="survey_visit")
-    @OneToMany(mappedBy="survey_visit", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="surveyVisit", fetch = FetchType.LAZY)
     private List<BirdRecord> birdRecords;
 
     public SurveyVisit(int projectNumber, String siteName, String surveyor,
