@@ -3,6 +3,7 @@ package com.codeclan.example.bird_surveying.models;
 public enum GenderType {
     FEMALE("F"),
     MALE("M"),
+    MIXED("MI"),
     UNKNOWN("UN");
 
     private final String code;

@@ -7,6 +7,7 @@ public enum AgeType {
     FIRST_YEAR("1Y"),
     SECOND_YEAR("2Y"),
     ADULT("AD"),
+    MIXED("MI"),
     UNKNOWN("UN");
 
     private final String code;
