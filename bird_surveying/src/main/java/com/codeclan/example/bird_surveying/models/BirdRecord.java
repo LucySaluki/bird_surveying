@@ -1,5 +1,7 @@
 package com.codeclan.example.bird_surveying.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -39,7 +41,7 @@ public class BirdRecord {
 
     @Column(name = "northing")
     private Long northing;
-
+    
     @ManyToOne
     @JoinColumn(name = "survey_visit_id", nullable = false)
     private SurveyVisit surveyVisit;
