@@ -6,7 +6,7 @@ const NavHeader = (props) => {
         <h1 className="navTitle">Bird Surveying App</h1>
       <ul>
         <li className="nav">
-          <a href="/">Home</a>
+          <a href="/visits">Home</a>
         </li>
         <li className="nav">
           <a href="/visits/new"> New Survey Visit</a>
