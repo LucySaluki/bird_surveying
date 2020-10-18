@@ -67,12 +67,12 @@ class BirdSurveyContainer extends Component {
       <Switch>
       {/* <Route exact path="/visits/new" render={(props) => {
         return <SurveyForm surveys={this.state.visits} onCreate ={this.handlePost}/>
-      }}/>
+      }}/> */}
       <Route exact path="/visits/:id" render={(props) =>{
         const id = props.match.params.id;
         const survey = this.findSurveyById(id);
-        return <SurveyDetail survey={survey} onDelete={this.handleDelete} />
-      }}/> */}
+        return <Survey survey={survey} />
+      }}/>
 
       <Route render={(props) =>{
         return <SurveyList surveys={this.state.visits}/>

@@ -11,11 +11,9 @@ const SurveyList = (props) => {
 		})
 
 	return (
-		<div className="visit-component">
-			<ul className="visit-list">
-				{surveys}
-			</ul>
-		</div>
+		<ul className="visit-list">
+			{surveys}
+		</ul>
 
 	)
 }

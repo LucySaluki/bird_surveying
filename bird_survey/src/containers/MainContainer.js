@@ -8,9 +8,9 @@ const MainContainer = () => {
       <Router>
       <Fragment>
       <NavHeader/>
-      <Switch>
-        <Route path="/visits" component={BirdSurveyContainer}/>
-      </Switch>
+        <Switch>
+          <Route path="/visits" component={BirdSurveyContainer}/>
+        </Switch>
       </Fragment>
       </Router>
     )

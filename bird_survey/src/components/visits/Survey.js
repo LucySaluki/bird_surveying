@@ -5,7 +5,7 @@ const Survey = (props) => {
 
 		return (
 		<Fragment>
-    		<Link to = {"/visits/"+ props.survey.id} className="visit">
+    		<Link to = {"visits/"+ props.survey.id} className="visit">
     			{props.survey.siteName} {props.survey.surveyDate}
     		</Link>
     		<p>Surveyor: {props.survey.surveyor}</p>
