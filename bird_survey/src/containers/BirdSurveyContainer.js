@@ -2,14 +2,14 @@ import React, {Component, Fragment} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import SurveyList from '../components/visits/SurveyList';
 import Request from '../helpers/request';
-import Survey from '../components/visits/Survey';
+import SurveyForm from '../components/visits/SurveyForm';
 
 class BirdSurveyContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
       birds: [],
-      visits: []
+      visits: [],
     }
 
       this.findSurveyById = this.findSurveyById.bind(this);
@@ -34,9 +34,9 @@ class BirdSurveyContainer extends Component {
   })
 }
 
-  findSurveyById(id){
-    return this.state.visits.find((visit) => {
-      return visit.id === parseInt(id);
+  findBirdsBySurveyId(id){
+    return this.state.birds.find((birds) => {
+      return this.birds.surveyVisit.id === parseInt(id);
     });
   }
 
@@ -45,33 +45,45 @@ class BirdSurveyContainer extends Component {
     const url = '/api/birds/' + id;
     request.delete(url)
     .then(()=> window.location ='/birds')
+    .catch(err => console.log(err));
   }
 
   handleSurveyDelete(id){
     const request = new Request();
     const url = '/api/visits/' + id;
     request.delete(url)
-    .then(()=> window.location ='/surveys')
+    .then(()=> window.location ='/visits')
+    .catch(err => console.log(err));
   }
 
-  handlePost(bird){
+  handlePost(survey){
     const request = new Request();
-    request.post('/api/birds', bird)
-    .then(()=> window.location = '/birds')
+    request.post('/api/visits', survey)
+    .then(()=> window.location = '/visits')
+    .catch(err => console.log(err));
   }
+
+  handlePatch(survey){
+    const request = new Request();
+    const url='/api/visits/' + survey.id
+    request.patch(url, survey)
+    .then(()=> window.location = '/visits')
+    .catch(err => console.log(err));
+  }
+
 
   render(){
     return(
       <Router>
       <Fragment>
       <Switch>
-      {/* <Route exact path="/visits/new" render={(props) => {
+      <Route exact path="/visits/new" render={(props) => {
         return <SurveyForm surveys={this.state.visits} onCreate ={this.handlePost}/>
-      }}/> */}
+      }}/>
       <Route exact path="/visits/:id" render={(props) =>{
         const id = props.match.params.id;
         const survey = this.findSurveyById(id);
-        return <Survey survey={survey} />
+        return <SurveyForm currSurvey={survey} onUpdate={this.handlePatch} currBirds={this.findBirdsBySurveyId(survey.id)}/>
       }}/>
 
       <Route render={(props) =>{

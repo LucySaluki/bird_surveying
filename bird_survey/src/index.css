@@ -39,8 +39,7 @@ li.visit-item {
 }
 
 body {
-    height: 125vh;
-    font-family: sans-serif;
+  font-family: sans-serif;
   background-color: ghostWhite;
 }
 #root {
@@ -53,33 +52,33 @@ body {
   height:100%;
 }
 header {
-    background-color: white;
+    background-color: darkslategray;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 80px;
-     display: flex;
-     align-items: center;
+    display: flex;
+    align-items: center;
 }
 header * {
     display: inline;
 }
-header img {
-  height: 80px;
-margin-left: 40px;
-}
+
 header li {
     margin: 20px;
 }
 
 a {
-    color: black;
+    color: ghostWhite;
 }
 
-.singleVisit {
+.visit-form input{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+.visit-container {
+  display: flex;
 }
 
 .button-link {
