@@ -12,16 +12,17 @@ class BirdSurveyContainer extends Component {
       visits: [],
     }
 
-      //this.findSurveyById = this.findSurveyById.bind(this);
+      this.handleSurveyDelete=this.handleSurveyDelete.bind(this);
+      this.handleBirdDelete=this.handleBirdDelete.bind(this);
+      this.getSurveyBirds=this.getSurveyBirds.bind(this);
   }
 
   componentDidMount(){
+    this.getSurveyBirds();
+  }
+    
+  getSurveyBirds(){
     const request = new Request();
-    // request.get('api/visits')
-    // .then((data) => {
-      // this.setState({visits: data});
-    // })
-
     const birdPromise = request.get('/api/birds');
     const visitPromise = request.get('/api/visits');
 
@@ -33,33 +34,43 @@ class BirdSurveyContainer extends Component {
     })
   })
 }
+
+
+
   findSurveyById(id){
     return this.state.visits.find((visit) => {
       return visit.id === parseInt(id);
     });
   }
   findBirdsBySurveyId(id){
-    return this.state.birds.find((birds) => {
+    return this.state.birds.filter((birds) => {
       return birds.surveyVisit.id === parseInt(id);
     });
   }
 
-  handleBirdDelete(id){
-    const request = new Request();
-    const url = '/api/birds/' + id;
-    request.delete(url)
-    .then(()=> window.location ='/birds')
-    .catch(err => console.log(err));
-  }
 
   handleSurveyDelete(id){
-    const request = new Request();
-    const url = '/api/visits/' + id;
-    request.delete(url)
-    .then(()=> window.location ='/visits')
-    .catch(err => console.log(err));
+    if(this.findBirdsBySurveyId(id).length>0){
+      alert("Please delete the associated bird records first");
+    } else {
+      const request = new Request();
+      const url = '/api/visits/' + id;
+      request.delete(url)
+      .then(()=> {
+        this.getSurveyBirds();
+        window.location = '/visits';
+      })
+      .catch(err => console.log(err));
+    }
   }
 
+  handleBirdDelete(bird){
+    const request = new Request();
+    const url = '/api/birds/' + bird.id;
+    request.delete(url)
+    .then(()=> this.getSurveyBirds())
+    .catch(err => console.log(err));
+  }
   handlePost(survey){
     const request = new Request();
     request.post('/api/visits', survey)
@@ -74,7 +85,21 @@ class BirdSurveyContainer extends Component {
     .then(()=> window.location = '/visits')
     .catch(err => console.log(err));
   }
+  handleBirdPost(bird){
+    const request = new Request();
+    request.post('/api/birds', bird)
+    .then(()=> window.location = '/visits/'+ bird.surveyVisit.id)
+    .catch(err => console.log(err));
+  }
 
+  handleBirdPatch(bird){
+    const request = new Request();
+    const url='/api/birds/' + bird.id
+    request.patch(url, bird)
+    .then(()=> 
+      window.location = '/visits/'+ bird.surveyVisit.id)
+    .catch(err => console.log(err));
+  }
 
   render(){
     return(
@@ -82,12 +107,13 @@ class BirdSurveyContainer extends Component {
       <Fragment>
       <Switch>
       <Route exact path="/visits/new" render={(props) => {
-        return <SurveyForm surveys={this.state.visits} onCreate ={this.handlePost}/>
+        return <SurveyForm surveys={this.state.visits} onCreate ={this.handlePost} onBirdCreate={this.handleBirdPost}/>
       }}/>
       <Route exact path="/visits/:id" render={(props) =>{
         const id = props.match.params.id;
         const survey = this.findSurveyById(id);
-        return <SurveyForm currSurvey={survey} onUpdate={this.handlePatch} currBirds={this.findBirdsBySurveyId(survey.id)}/>
+        const birds=this.findBirdsBySurveyId(id);
+        return <SurveyForm currSurvey={survey} onBirdUpdate={this.handleBirdPatch} onUpdate={this.handlePatch} onBirdCreate={this.handleBirdPost} currBirds={birds} onSurveyDelete={this.handleSurveyDelete} onBirdDelete={this.handleBirdDelete}/>
       }}/>
 
       <Route render={(props) =>{

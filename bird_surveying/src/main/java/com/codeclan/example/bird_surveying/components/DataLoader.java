@@ -26,16 +26,16 @@ public class DataLoader implements ApplicationRunner {
                 2, WindDirectionType.NORTH, PrecipitationType.NONE);
         surveyVisitRepository.save(visit1);
 
-        BirdRecord bird1= new BirdRecord("CU","Curlew",1, GenderType.UNKNOWN, AgeType.ADULT,
-                ActivityType.SUMMERING,"",123456L,654321L,visit1);
+        BirdRecord bird1= new BirdRecord("Curlew",1, GenderType.UNKNOWN, AgeType.ADULT,
+                ActivityType.SUMMERING,"",4.25,57.46,visit1);
         birdRecordRepository.save(bird1);
 
-        BirdRecord bird2= new BirdRecord("DN","Dunlin",1, GenderType.MALE, AgeType.ADULT,
-                ActivityType.AGITATED,"Alarm calling",234567L,765432L,visit1);
+        BirdRecord bird2= new BirdRecord("Dunlin",1, GenderType.MALE, AgeType.ADULT,
+                ActivityType.AGITATED,"Alarm calling",4.23,57.479,visit1);
         birdRecordRepository.save(bird2);
 
-        BirdRecord bird3= new BirdRecord("SN","Snipe",1, GenderType.MALE, AgeType.ADULT,
-                ActivityType.DISPLAY,"Drumming",246801L,108642L,visit1);
+        BirdRecord bird3= new BirdRecord("Snipe",1, GenderType.MALE, AgeType.ADULT,
+                ActivityType.DISPLAY,"Drumming",4.2247,57.4778,visit1);
         birdRecordRepository.save(bird3);
 
         SurveyVisit visit2= new SurveyVisit(20002,"Ben Wyvis", "Fred Smith",
@@ -43,8 +43,8 @@ public class DataLoader implements ApplicationRunner {
                 1, WindDirectionType.SOUTH_WEST, PrecipitationType.LIGHT_INTERMITTENT);
         surveyVisitRepository.save(visit2);
 
-        BirdRecord bird4= new BirdRecord("CU","Curlew",2, GenderType.UNKNOWN, AgeType.EGG,
-                ActivityType.NEST_EGGS,"No sign of adult, eggs warm though",283456L,854321L,visit2);
+        BirdRecord bird4= new BirdRecord("Curlew",2, GenderType.UNKNOWN, AgeType.EGG,
+                ActivityType.NEST_EGGS,"No sign of adult, eggs warm though",4.26,57.4778,visit2);
         birdRecordRepository.save(bird4);
     }
 }

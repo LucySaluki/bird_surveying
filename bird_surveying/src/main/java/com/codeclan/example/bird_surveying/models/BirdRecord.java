@@ -12,9 +12,6 @@ public class BirdRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "bto_code")
-    private String btoCode;
-
     @Column(name = "species")
     private String species;
 
@@ -36,28 +33,27 @@ public class BirdRecord {
     @Column(name = "comments")
     private String comments;
 
-    @Column(name = "easting")
-    private Long easting;
+    @Column(name = "longitude")
+    private double longitude;
 
-    @Column(name = "northing")
-    private Long northing;
+    @Column(name = "latitude")
+    private double latitude;
     
     @ManyToOne
     @JoinColumn(name = "survey_visit_id", nullable = false)
     private SurveyVisit surveyVisit;
 
-    public BirdRecord(String btoCode, String species, int countBirds, GenderType gender,
+    public BirdRecord(String species, int countBirds, GenderType gender,
                       AgeType ageClass, ActivityType activity, String comments,
-                      Long easting, Long northing, SurveyVisit surveyVisit) {
-        this.btoCode = btoCode;
+                      double longitude, double latitude, SurveyVisit surveyVisit) {
         this.species = species;
         this.countBirds = countBirds;
         this.gender = gender;
         this.ageClass = ageClass;
         this.activity = activity;
         this.comments = comments;
-        this.easting = easting;
-        this.northing = northing;
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.surveyVisit = surveyVisit;
     }
 
@@ -71,14 +67,6 @@ public class BirdRecord {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getBtoCode() {
-        return btoCode;
-    }
-
-    public void setBtoCode(String btoCode) {
-        this.btoCode = btoCode;
     }
 
     public String getSpecies() {
@@ -129,20 +117,20 @@ public class BirdRecord {
         this.comments = comments;
     }
 
-    public Long getEasting() {
-        return easting;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setEasting(Long easting) {
-        this.easting = easting;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
-    public Long getNorthing() {
-        return northing;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setNorthing(Long northing) {
-        this.northing = northing;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public SurveyVisit getSurveyVisit() {

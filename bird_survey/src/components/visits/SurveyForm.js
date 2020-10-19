@@ -1,24 +1,22 @@
 import React, {Component} from 'react';
 import BirdList from '../birds/BirdList';
 import Map from '../maps/Map';
-
+import Bird from '../birds/Bird';
 
 class SurveyForm extends Component {
     constructor(props){
         super(props);
         this.state={
             survey: [],
-            birds:[]
+
         }
         this.handleChange=this.handleChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
+        this.handleDelete=this.handleDelete.bind(this);
     }
     componentDidMount(){
         if(this.props.currSurvey){
             this.setState({survey: this.props.currSurvey});
-        }
-        if(this.props.currBirds){
-            this.setState({birds: this.props.currBirds});
         }
     }
     handleChange(event){
@@ -35,11 +33,20 @@ class SurveyForm extends Component {
         }
             this.props.onCreate(this.state.survey);
     }
+    handleDelete(){
+        this.props.onSurveyDelete(this.state.survey.id);
+    }
 
     render(){
 
         return (
             <div>
+                <button><a href="/visits" className="aHome">Home</a></button>
+                <button>Text Entry</button>
+                <button>Voice Entry</button>
+                <button>Upload to Database</button>
+                <button>Prev.</button>
+                <button>Next</button>
             <form className="visit-container" onSubmit={this.handleSubmit} >
                 <div className="visit-form">
                     <label>Project No. </label><input type="number" placeholder="Project Number" name="projectNumber" onChange={this.handleChange} defaultValue={this.state.survey.projectNumber} />
@@ -59,7 +66,9 @@ class SurveyForm extends Component {
                 </div>
                 <button type="submit">Save</button>
             </form>
-            {/* <BirdList birds={this.state.birds}/> */}
+                <button onClick={this.handleDelete}>Delete</button>
+                <Bird bird={{}} onBirdCreate={this.props.onBirdCreate} onBirdUpdate={this.props.onBirdUpdate} survey={this.props.currSurvey}/>
+            <BirdList birds={this.props.currBirds} onBirdDelete={this.props.onBirdDelete} onBirdUpdate={this.props.onBirdUpdate} onBirdCreate={this.props.onBirdCreate}/>
             <Map/>
             </div>
           )

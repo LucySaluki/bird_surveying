@@ -100,11 +100,11 @@ class BirdSurveyingApplicationTests {
 	}
 	@Test
 	public void hasEasting(){
-		assertEquals(123456,birdRecordRepository.getOne(1L).getEasting());
+		assertEquals(57.4,birdRecordRepository.getOne(1L).getLongitude());
 	}
 	@Test
 	public void hasNorthing(){
-		assertEquals(654321,birdRecordRepository.getOne(1L).getNorthing());
+		assertEquals(4.22,birdRecordRepository.getOne(1L).getLatitude());
 	}
 	@Test
 	public void hasSurveyVisit(){
@@ -113,8 +113,8 @@ class BirdSurveyingApplicationTests {
 	@Test
 	public void canAddBirdRecord(){
 		SurveyVisit survey=surveyVisitRepository.getOne(2L);
-		BirdRecord birdRecord=new BirdRecord("CS", "Common sandpiper",1, GenderType.UNKNOWN,
-				AgeType.ADULT,ActivityType.FLYING,"Flying over",246800L,246800L,survey);
+		BirdRecord birdRecord=new BirdRecord("Common sandpiper",1, GenderType.UNKNOWN,
+				AgeType.ADULT,ActivityType.FLYING,"Flying over",4.22,57.4,survey);
 		survey.addBirdRecord(birdRecord);
 		assertEquals(2,survey.getBirdRecords().size());
 	}
