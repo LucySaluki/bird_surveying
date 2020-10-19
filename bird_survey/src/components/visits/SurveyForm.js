@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import BirdList from '../birds/BirdList';
+import Map from '../maps/Map';
+
 
 class SurveyForm extends Component {
     constructor(props){
@@ -57,7 +59,8 @@ class SurveyForm extends Component {
                 </div>
                 <button type="submit">Save</button>
             </form>
-            <BirdList birds={this.state.birds}/>
+            {/* <BirdList birds={this.state.birds}/> */}
+            <Map/>
             </div>
           )
     }

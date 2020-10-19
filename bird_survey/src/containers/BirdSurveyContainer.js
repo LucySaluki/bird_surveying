@@ -12,7 +12,7 @@ class BirdSurveyContainer extends Component {
       visits: [],
     }
 
-      this.findSurveyById = this.findSurveyById.bind(this);
+      //this.findSurveyById = this.findSurveyById.bind(this);
   }
 
   componentDidMount(){
@@ -33,10 +33,14 @@ class BirdSurveyContainer extends Component {
     })
   })
 }
-
+  findSurveyById(id){
+    return this.state.visits.find((visit) => {
+      return visit.id === parseInt(id);
+    });
+  }
   findBirdsBySurveyId(id){
     return this.state.birds.find((birds) => {
-      return this.birds.surveyVisit.id === parseInt(id);
+      return birds.surveyVisit.id === parseInt(id);
     });
   }
 
