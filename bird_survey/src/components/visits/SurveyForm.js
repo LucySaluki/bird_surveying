@@ -7,7 +7,10 @@ class SurveyForm extends Component {
     constructor(props){
         super(props);
         this.state={
-            survey: [],
+            survey: {},
+            valuePrecipitation:"Select a value",
+            valueWindDirection:"Select a value"
+    
 
         }
         this.handleChange=this.handleChange.bind(this);
@@ -17,7 +20,9 @@ class SurveyForm extends Component {
     componentDidMount(){
         if(this.props.currSurvey){
             this.setState({survey: this.props.currSurvey});
-        }
+            this.setState({valuePrecipitation:this.props.currSurvey.precipitation});
+            this.setState({valueWindDirection:this.props.currSurvey.windDirectionType});
+        } 
     }
     handleChange(event){
         const propertyName= event.target.name;
@@ -30,9 +35,9 @@ class SurveyForm extends Component {
         event.preventDefault();
         if(this.props.currSurvey){
             this.props.onUpdate(this.state.survey);
-        }
+        } else{
             this.props.onCreate(this.state.survey);
-    }
+    }}
     handleDelete(){
         this.props.onSurveyDelete(this.state.survey.id);
     }
@@ -61,8 +66,27 @@ class SurveyForm extends Component {
                     <label>Cloud Cover </label><input type="number" placeholder="Cloud cover (eigths)" name="cloudCover" onChange={this.handleChange} defaultValue={this.state.survey.cloudCover} />
                     <label>Temperature </label><input type="number" placeholder="Temp. (degrees Celsius)" name="temperature" onChange={this.handleChange} defaultValue={this.state.survey.temperature} />
                     <label>Wind Speed </label><input type="number" placeholder="Wind speed (Beaufort)" name="windSpeed" onChange={this.handleChange} defaultValue={this.state.survey.windSpeed}/>
-                    <label>Wind Direction </label><input type="text" placeholder="Wind direction" name="windDirection" onChange={this.handleChange} defaultValue={this.state.survey.windDirectionType} />
-                    <label>Preciptiation </label><input type="text" placeholder="Preciptation" name="precipitation" onChange={this.handleChange} defaultValue={this.state.survey.precipitation} />
+                    <label htmlFor="windDirectionType">Wind Direction</label>
+                        <select name="windDirectionType" value={this.state.valueWindDirection} onChange={this.handleChange} defaultValue={this.state.survey.windDirectionType}>
+                            <option disabled value="Select a value">Select a value</option>
+                            <option value="NORTH">North</option>
+                            <option value="NORTH_EAST">North-east</option>
+                            <option value="EAST">East</option>
+                            <option value="SOUTH_EAST">South-east</option>
+                            <option value="SOUTH">South</option>
+                            <option value="SOUTH_WEST">South-west</option>
+                            <option value="WEST">West</option>
+                            <option value="NORTH_WEST">North-west</option>
+                        </select>
+                    <label htmlFor="precipitation">Preciptiation</label>
+                        <select placeholder="Preciptation" value={this.state.valuePrecipitation} name="precipitation" onChange={this.handleChange} defaultValue={this.state.survey.precipitation}>
+                            <option disabled value="Select a value">Select a value</option>
+                            <option value="NONE">None</option>
+                            <option value="LIGHT_INTERMITTENT">Light intermittent</option>
+                            <option value="HEAVY_INTERMITTENT">Heavy intermittent</option>
+                            <option value="LIGHT_PERSISTENT" >Light persistent</option>
+                            <option value="HEAVY_PERSISTENT">Heavy persistent</option>
+                        </select>
                 </div>
                 <button type="submit">Save</button>
             </form>
