@@ -8,18 +8,19 @@ class Bird extends Component {
 			valueGender:"Select a value",
 			valueAge:"Select a value",
 			valueActivity: "Select a value",
-
+            hidden:true
         }
         this.handleChange=this.handleChange.bind(this);
 		this.handleSubmit=this.handleSubmit.bind(this);
-		this.handleDelete=this.handleDelete.bind(this);
+        this.handleDelete=this.handleDelete.bind(this);
     }
     componentDidMount(){
-        if(this.props.bird){
+        if(this.props.bird.id){
 			this.setState({bird: this.props.bird});
 			this.setState({valueGender:this.props.bird.gender});
 			this.setState({valueAge:this.props.bird.ageClass});
-			this.setState({valueActivity:this.props.bird.activity});
+            this.setState({valueActivity:this.props.bird.activity});
+            this.setState({hidden:false});
         } 
     }
     handleChange(event){
@@ -40,7 +41,8 @@ class Bird extends Component {
 
 	handleDelete(){
 		this.props.onBirdDelete(this.state.bird);
-	}
+    }
+    
 	
 	render(){
 		return (
@@ -92,7 +94,7 @@ class Bird extends Component {
                     <input type="number" step="any" placeholder="Longitude" name="longitude" onChange={this.handleChange}  defaultValue={this.state.bird.longitude}/>
 				<button type="submit">Save</button>
 			</form>
-			<button onClick={this.handleDelete}>Delete</button>
+            <button onClick={this.handleDelete} hidden={this.state.hidden}>Delete</button>
 		</Fragment>
 		)
 	}
