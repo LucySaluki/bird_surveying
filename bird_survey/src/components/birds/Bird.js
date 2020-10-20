@@ -23,10 +23,17 @@ class Bird extends Component {
             this.setState({hidden:false});
         } 
     }
+    componentDidUpdate(){
+        if(!this.props.marker===undefined){
+        console.log(this.props.marker);}
+    }
+
     handleChange(event){
         const propertyName= event.target.name;
         const bird = this.state.bird;
         bird[propertyName]= event.target.value;
+        bird["latitude"]=this.props.marker.lat;
+        bird["longitude"]=this.props.marker.lng;
         this.setState({bird:bird});
     }
 
@@ -42,9 +49,9 @@ class Bird extends Component {
 	handleDelete(){
 		this.props.onBirdDelete(this.state.bird);
     }
-    
 	
 	render(){
+    
 		return (
 		<Fragment>
     		<form className="bird-container" onSubmit={this.handleSubmit} >
@@ -90,7 +97,7 @@ class Bird extends Component {
                         <option value="FLEDGED">Fledged young</option>
                     </select>
 					<input type="text" placeholder="Comments" name="comments" onChange={this.handleChange} defaultValue={this.state.bird.comments}/>
-					<input type="number" step="any" placeholder="Latitude" name="latitude" onChange={this.handleChange}  defaultValue={this.state.bird.latitude}/>
+                    <input type="number" step="any" placeholder="Latitude" name="latitude" onChange={this.handleChange}  defaultValue={this.state.bird.latitude}/>
                     <input type="number" step="any" placeholder="Longitude" name="longitude" onChange={this.handleChange}  defaultValue={this.state.bird.longitude}/>
 				<button type="submit">Save</button>
 			</form>

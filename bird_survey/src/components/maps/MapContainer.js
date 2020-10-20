@@ -7,15 +7,8 @@ class MapContainer extends Component {
     super(props);
     this.state={
       position: [57.647340946019085,-4.58778027095832],
-      markers:[]
     }
 
-  }
-  addMarker = (e) => {
-    const {markers} = this.state
-    markers.push(e.latlng)
-    this.setState({markers});
-    console.log(e.latlng);
   }
 
     render(){
@@ -32,19 +25,12 @@ class MapContainer extends Component {
       
         })
       return(
-        <Map onClick={this.addMarker} center={this.state.position} zoom={12} >
+        <Map onClick={this.props.onNewMarker} center={this.state.position} zoom={12} >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
          {birdPoints} 
-        {this.state.markers.map((position, idx) => 
-          <Marker key={`marker-${idx}`} position={position}>
-          <Popup>
-            <span>A pretty CSS3 popup. <br/> Easily customizable.</span>
-          </Popup>
-         </Marker>
-        )}
       </Map>
       )
   }

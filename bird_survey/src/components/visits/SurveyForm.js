@@ -10,10 +10,12 @@ class SurveyForm extends Component {
             survey: {},
             valuePrecipitation:"Select a value",
             valueWindDirection:"Select a value",
+            marker:[]
         }
         this.handleChange=this.handleChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleDelete=this.handleDelete.bind(this);
+        this.handleAddMarker=this.handleAddMarker.bind(this);
     }
     componentDidMount(){
         if(this.props.currSurvey){
@@ -39,6 +41,10 @@ class SurveyForm extends Component {
     handleDelete(){
         this.props.onSurveyDelete(this.state.survey.id);
     }
+
+    handleAddMarker(e){
+        this.setState({marker: e.latlng});
+      }
 
     render(){
 
@@ -89,9 +95,11 @@ class SurveyForm extends Component {
                 <button type="submit">Save</button>
             </form>
                 <button onClick={this.handleDelete}>Delete</button>
-                <Bird bird={{}} onBirdCreate={this.props.onBirdCreate} onBirdUpdate={this.props.onBirdUpdate} survey={this.props.currSurvey}/>
+                <h4>Bird Records</h4>
+                <span>Click map to enter co-ordinates first</span>
+                <Bird bird={{}} marker={this.state.marker} onBirdCreate={this.props.onBirdCreate} onBirdUpdate={this.props.onBirdUpdate} survey={this.props.currSurvey}/>
             <BirdList birds={this.props.currBirds} onBirdDelete={this.props.onBirdDelete} onBirdUpdate={this.props.onBirdUpdate} onBirdCreate={this.props.onBirdCreate}/>
-            <MapContainer birds={this.props.currBirds} />
+            <MapContainer birds={this.props.currBirds} onNewMarker={this.handleAddMarker}/>
             </div>
           )
     }
