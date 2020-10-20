@@ -27,15 +27,15 @@ public class DataLoader implements ApplicationRunner {
         surveyVisitRepository.save(visit1);
 
         BirdRecord bird1= new BirdRecord("Curlew",1, GenderType.UNKNOWN, AgeType.ADULT,
-                ActivityType.SUMMERING,"",4.25,57.46,visit1);
+                ActivityType.SUMMERING,"",-4.59788027095832,57.637390946019085,visit1);
         birdRecordRepository.save(bird1);
 
         BirdRecord bird2= new BirdRecord("Dunlin",1, GenderType.MALE, AgeType.ADULT,
-                ActivityType.AGITATED,"Alarm calling",4.23,57.479,visit1);
+                ActivityType.AGITATED,"Alarm calling",-4.54748027095832,57.647340946019085,visit1);
         birdRecordRepository.save(bird2);
 
         BirdRecord bird3= new BirdRecord("Snipe",1, GenderType.MALE, AgeType.ADULT,
-                ActivityType.DISPLAY,"Drumming",4.2247,57.4778,visit1);
+                ActivityType.DISPLAY,"Drumming",-4.52798027095832,57.667440946019085,visit1);
         birdRecordRepository.save(bird3);
 
         SurveyVisit visit2= new SurveyVisit(20002,"Ben Wyvis", "Fred Smith",
@@ -44,7 +44,7 @@ public class DataLoader implements ApplicationRunner {
         surveyVisitRepository.save(visit2);
 
         BirdRecord bird4= new BirdRecord("Curlew",2, GenderType.UNKNOWN, AgeType.EGG,
-                ActivityType.NEST_EGGS,"No sign of adult, eggs warm though",4.26,57.4778,visit2);
+                ActivityType.NEST_EGGS,"No sign of adult, eggs warm though",-4.55728027095832,57.617140946019085,visit2);
         birdRecordRepository.save(bird4);
     }
 }

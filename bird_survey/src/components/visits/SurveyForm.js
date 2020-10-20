@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import BirdList from '../birds/BirdList';
-import Map from '../maps/Map';
+import MapContainer from '../maps/MapContainer';
 import Bird from '../birds/Bird';
 
 class SurveyForm extends Component {
@@ -9,13 +9,12 @@ class SurveyForm extends Component {
         this.state={
             survey: {},
             valuePrecipitation:"Select a value",
-            valueWindDirection:"Select a value"
-    
-
+            valueWindDirection:"Select a value",
         }
         this.handleChange=this.handleChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleDelete=this.handleDelete.bind(this);
+        //this.handleAddMarker=this.handleAddMarker(this);
     }
     componentDidMount(){
         if(this.props.currSurvey){
@@ -41,6 +40,11 @@ class SurveyForm extends Component {
     handleDelete(){
         this.props.onSurveyDelete(this.state.survey.id);
     }
+
+    // handleAddMarker(e){  
+    //     console.log(e.latlong);
+    //   }
+    
 
     render(){
 
@@ -93,7 +97,7 @@ class SurveyForm extends Component {
                 <button onClick={this.handleDelete}>Delete</button>
                 <Bird bird={{}} onBirdCreate={this.props.onBirdCreate} onBirdUpdate={this.props.onBirdUpdate} survey={this.props.currSurvey}/>
             <BirdList birds={this.props.currBirds} onBirdDelete={this.props.onBirdDelete} onBirdUpdate={this.props.onBirdUpdate} onBirdCreate={this.props.onBirdCreate}/>
-            <Map/>
+            <MapContainer birds={this.props.currBirds} onNewMarker={this.handleAddMarker}/>
             </div>
           )
     }
