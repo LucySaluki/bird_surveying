@@ -31,7 +31,7 @@ li.visit-item {
   display: inline;
   margin: 20px;
   padding: 10px;
-  width: 300px;
+  width: 250px;
   border: 1px solid black;
 }
 
@@ -41,7 +41,9 @@ li.visit-item {
     background-color: darkslategray;
     color:ghostWhite;
 }
-
+span{
+  font-size: smaller;
+}
 body {
   font-family: sans-serif;
   background-color: ghostWhite;
@@ -84,16 +86,18 @@ a {
   display: flex;
   flex-direction: column;
   margin-right: 20px;
-  
 }
 .visit-container {
   display: flex;
 }
-
+.weather-header{
+  text-decoration: underline;
+  font-size:medium;
+}
 .visit-form select{
   display:flex;
   flex-direction:column;
-  width:150px;
+  width:152px;
 }
 .bird-form {
   display:inline;

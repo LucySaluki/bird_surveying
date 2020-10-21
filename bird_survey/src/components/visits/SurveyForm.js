@@ -76,10 +76,10 @@ class SurveyForm extends Component {
                     <label>Finish Time </label><input type="text" placeholder="Finish Time" name="finishTime" onChange={this.handleChange} defaultValue={this.state.survey.finishTime}/>
                 </div>
                 <div className="visit-form">
-                    Weather Details
-                    <label>Cloud Cover </label><input type="number" placeholder="Cloud cover (eigths)" name="cloudCover" onChange={this.handleChange} defaultValue={this.state.survey.cloudCover} />
-                    <label>Temperature </label><input type="number" placeholder="Temp. (degrees Celsius)" name="temperature" onChange={this.handleChange} defaultValue={this.state.survey.temperature} />
-                    <label>Wind Speed </label><input type="number" placeholder="Wind speed (Beaufort)" name="windSpeed" onChange={this.handleChange} defaultValue={this.state.survey.windSpeed}/>
+                    <span className="weather-header">Weather Details</span><br/>
+                    <label>Cloud Cover<span>(eights)</span></label><input type="number" placeholder="Cloud cover (eigths)" name="cloudCover" onChange={this.handleChange} defaultValue={this.state.survey.cloudCover} />
+                    <label>Temperature<span>(&#8451;)</span></label><input type="number" placeholder="Temp. (degrees Celsius)" name="temperature" onChange={this.handleChange} defaultValue={this.state.survey.temperature} />
+                    <label>Wind Speed<span>(Beaufort scale)</span></label><input type="number" placeholder="Wind speed (Beaufort)" name="windSpeed" onChange={this.handleChange} defaultValue={this.state.survey.windSpeed}/>
                     <label htmlFor="windDirectionType">Wind Direction</label>
                         <select name="windDirectionType" value={this.state.valueWindDirection} onChange={this.handleChange} defaultValue={this.state.survey.windDirectionType}>
                             <option disabled value="Select a value">Select a value</option>
