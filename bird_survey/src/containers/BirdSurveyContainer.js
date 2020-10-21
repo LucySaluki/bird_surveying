@@ -111,9 +111,9 @@ class BirdSurveyContainer extends Component {
       }}/>
       <Route exact path="/visits/:id" render={(props) =>{
         const id = props.match.params.id;
-        const survey = this.findSurveyById(id);
+        const survey = this.findSurveyById(id)|| {};
         const birds=this.findBirdsBySurveyId(id);
-        return <SurveyForm currSurvey={survey} onBirdUpdate={this.handleBirdPatch} onUpdate={this.handlePatch} onBirdCreate={this.handleBirdPost} currBirds={birds} onSurveyDelete={this.handleSurveyDelete} onBirdDelete={this.handleBirdDelete}/>
+        return <SurveyForm key={survey.id} currSurvey={survey} onBirdUpdate={this.handleBirdPatch} onUpdate={this.handlePatch} onBirdCreate={this.handleBirdPost} currBirds={birds} onSurveyDelete={this.handleSurveyDelete} onBirdDelete={this.handleBirdDelete}/>
       }}/>
 
       <Route render={(props) =>{

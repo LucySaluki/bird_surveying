@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import BirdList from '../birds/BirdList';
 import MapContainer from '../maps/MapContainer';
 import Bird from '../birds/Bird';
+import Speech from '../additions/Speech';
 
 class SurveyForm extends Component {
     constructor(props){
@@ -24,11 +25,18 @@ class SurveyForm extends Component {
             this.setState({valueWindDirection:this.props.currSurvey.windDirectionType});
         } 
     }
+
     handleChange(event){
         const propertyName= event.target.name;
         const survey = this.state.survey;
         survey[propertyName]= event.target.value;
         this.setState({survey:survey});
+        if(propertyName==="windDirectionType"){
+            this.setState({valueWindDirection:event.target.value});
+        }
+        if(propertyName==="precipitation"){
+            this.setState({valuePrecipitation:event.target.value});
+        }
     }
 
     handleSubmit(event){
@@ -37,7 +45,8 @@ class SurveyForm extends Component {
             this.props.onUpdate(this.state.survey);
         } else{
             this.props.onCreate(this.state.survey);
-    }}
+    }
+}
     handleDelete(){
         this.props.onSurveyDelete(this.state.survey.id);
     }
@@ -99,6 +108,7 @@ class SurveyForm extends Component {
                 <span>Click map to enter co-ordinates first</span>
                 <Bird bird={{}} marker={this.state.marker} onBirdCreate={this.props.onBirdCreate} onBirdUpdate={this.props.onBirdUpdate} survey={this.props.currSurvey}/>
             <BirdList birds={this.props.currBirds} onBirdDelete={this.props.onBirdDelete} onBirdUpdate={this.props.onBirdUpdate} onBirdCreate={this.props.onBirdCreate}/>
+            <Speech />
             <MapContainer birds={this.props.currBirds} onNewMarker={this.handleAddMarker}/>
             </div>
           )

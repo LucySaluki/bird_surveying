@@ -23,10 +23,6 @@ class Bird extends Component {
             this.setState({hidden:false});
         } 
     }
-    componentDidUpdate(){
-        if(!this.props.marker===undefined){
-        console.log(this.props.marker);}
-    }
 
     handleChange(event){
         const propertyName= event.target.name;
@@ -35,6 +31,15 @@ class Bird extends Component {
         bird["latitude"]=this.props.marker.lat;
         bird["longitude"]=this.props.marker.lng;
         this.setState({bird:bird});
+        if(propertyName==="gender"){
+            this.setState({valueGender:event.target.value});
+        }
+        if(propertyName==="ageClass"){
+            this.setState({valueAge:event.target.value});
+        }
+        if(propertyName==="activity"){
+            this.setState({valueActivity:event.target.value});
+        }
     }
 
     handleSubmit(event){
