@@ -25,7 +25,6 @@ code {
 li.bird-item {
   list-style: none;
   padding: 2px;
-  width: 95%;
   border: 1px solid black;
 }
 li.visit-item {
@@ -111,7 +110,9 @@ button {
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
 }
-
+ul{
+  padding:0px;
+}
 h4{
   margin:2px 0px;
 }
