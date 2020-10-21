@@ -14,7 +14,7 @@ const BirdList = (props) => {
 	})
 
 	return (
-		<ul className="visit-list">
+		<ul >
 			{birds}
 		</ul>
 

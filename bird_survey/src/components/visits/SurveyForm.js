@@ -59,13 +59,14 @@ class SurveyForm extends Component {
 
         return (
             <div>
-                <button><a href="/visits" className="aHome">Home</a></button>
+                {/* <button><a href="/visits" className="aHome">Home</a></button>
                 <button>Text Entry</button>
                 <button>Voice Entry</button>
                 <button>Upload to Database</button>
                 <button>Prev.</button>
-                <button>Next</button>
-            <form className="visit-container" onSubmit={this.handleSubmit} >
+                <button>Next</button> */}
+            <form onSubmit={this.handleSubmit} >
+                <div className="visit-container">
                 <div className="visit-form">
                     <label>Project No. </label><input type="number" placeholder="Project Number" name="projectNumber" onChange={this.handleChange} defaultValue={this.state.survey.projectNumber} />
                     <label>Site Name </label><input type="text" placeholder="Site Name" name="siteName" onChange={this.handleChange} defaultValue={this.state.survey.siteName} />
@@ -100,7 +101,7 @@ class SurveyForm extends Component {
                             <option value="LIGHT_PERSISTENT" >Light persistent</option>
                             <option value="HEAVY_PERSISTENT">Heavy persistent</option>
                         </select>
-                </div>
+                </div></div>
                 <button type="submit">Save</button>
             </form>
                 <button onClick={this.handleDelete}>Delete</button>

@@ -59,7 +59,8 @@ class Bird extends Component {
     
 		return (
 		<Fragment>
-    		<form className="bird-container" onSubmit={this.handleSubmit} >
+    		<form onSubmit={this.handleSubmit} >
+                    <div className="bird-form">
                     <input type="text" placeholder="Species" name="species" onChange={this.handleChange}  defaultValue={this.state.bird.species}/>
                     <input type="number" placeholder="Count of Birds" name="countBirds" onChange={this.handleChange}  defaultValue={this.state.bird.countBirds}/>
                     <select name="gender" value={this.state.valueGender} onChange={this.handleChange} defaultValue={this.state.bird.gender}>
@@ -104,9 +105,10 @@ class Bird extends Component {
 					<input type="text" placeholder="Comments" name="comments" onChange={this.handleChange} defaultValue={this.state.bird.comments}/>
                     <input type="number" step="any" placeholder="Latitude" name="latitude" onChange={this.handleChange}  defaultValue={this.state.bird.latitude}/>
                     <input type="number" step="any" placeholder="Longitude" name="longitude" onChange={this.handleChange}  defaultValue={this.state.bird.longitude}/>
-				<button type="submit">Save</button>
+                    </div><br/>
+                <button type="submit">Save</button>
 			</form>
-            <button onClick={this.handleDelete} hidden={this.state.hidden}>Delete</button>
+            <button  onClick={this.handleDelete} hidden={this.state.hidden}>Delete</button>
 		</Fragment>
 		)
 	}
