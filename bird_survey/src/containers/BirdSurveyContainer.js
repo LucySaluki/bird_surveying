@@ -15,6 +15,7 @@ class BirdSurveyContainer extends Component {
       this.handleSurveyDelete=this.handleSurveyDelete.bind(this);
       this.handleBirdDelete=this.handleBirdDelete.bind(this);
       this.getSurveyBirds=this.getSurveyBirds.bind(this);
+      this.handlePost=this.handlePost.bind(this);
   }
 
   componentDidMount(){
@@ -48,7 +49,6 @@ class BirdSurveyContainer extends Component {
     });
   }
 
-
   handleSurveyDelete(id){
     if(this.findBirdsBySurveyId(id).length>0){
       alert("Please delete the associated bird records first");
@@ -77,7 +77,7 @@ class BirdSurveyContainer extends Component {
     .then(()=> window.location = '/visits')
     .catch(err => console.log(err));
   }
-
+ 
   handlePatch(survey){
     const request = new Request();
     const url='/api/visits/' + survey.id

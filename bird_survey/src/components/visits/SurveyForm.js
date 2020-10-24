@@ -24,6 +24,7 @@ class SurveyForm extends Component {
             this.setState({valuePrecipitation:this.props.currSurvey.precipitation});
             this.setState({valueWindDirection:this.props.currSurvey.windDirectionType});
         } 
+        
     }
 
     handleChange(event){

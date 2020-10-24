@@ -7,15 +7,16 @@ class MapContainer extends Component {
     super(props);
     this.state={
       position: [57.647340946019085,-4.58778027095832],
-      // points:[]
+      markers:[]
     }
 
   }
-  // addMarker = (e) => {
-  //   const {points} = this.state
-  //   points.push(e.latlng)
-  //   this.setState({points})
-  // }
+  addMarker = (e) => {
+    const {markers} = this.state
+    markers.push(e.latlng);
+    this.setState({markers});
+    this.props.onNewMarker(e)
+  }
     render(){
       let birdPoints=[];
       if(this.props.birds){
@@ -31,15 +32,15 @@ class MapContainer extends Component {
       
         })}
       return(
-        <Map onClick={this.props.onNewMarker} center={this.state.position} zoom={12} >
+        <Map onClick={this.addMarker} center={this.state.position} zoom={12} >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
          {birdPoints} 
-         {/* {this.state.points.map((position, idx) => 
+         {this.state.markers.map((position, idx) => 
           <Marker key={`marker-${idx}`} position={position}>
-        </Marker>)} */}
+        </Marker>)}
       </Map>
       )
   }
