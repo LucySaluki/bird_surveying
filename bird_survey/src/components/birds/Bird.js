@@ -28,9 +28,11 @@ class Bird extends Component {
         const propertyName= event.target.name;
         const bird = this.state.bird;
         bird[propertyName]= event.target.value;
-        bird["latitude"]=this.props.marker.lat;
-        bird["longitude"]=this.props.marker.lng;
-        this.setState({bird:bird});
+        if(!bird["latitiude"] && !bird["longitude"]) {
+            bird["latitude"]=this.props.marker.lat;
+            bird["longitude"]=this.props.marker.lng;
+            this.setState({bird:bird});
+        }
         if(propertyName==="gender"){
             this.setState({valueGender:event.target.value});
         }
