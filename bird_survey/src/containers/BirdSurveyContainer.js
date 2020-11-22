@@ -74,7 +74,7 @@ class BirdSurveyContainer extends Component {
   handlePost(survey){
     const request = new Request();
     request.post('/api/visits', survey)
-    .then(()=> window.location = '/visits')
+    .then((survey)=> window.location = '/visits/' + survey.id)
     .catch(err => console.log(err));
   }
  

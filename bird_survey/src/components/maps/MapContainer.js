@@ -21,6 +21,7 @@ class MapContainer extends Component {
       let birdPoints=[];
       if(this.props.birds){
         birdPoints = this.props.birds.map(bird =>{
+          if(bird.gender && bird.ageClass && bird.activity) {
         return <Marker key={bird.id} position={[bird.latitude,bird.longitude]}>
           <Popup >Species: {bird.species}<br />
                   Count:{bird.countBirds}<br />
@@ -30,7 +31,7 @@ class MapContainer extends Component {
           </Popup>
         </Marker>
       
-        })}
+        }})}
       return(
         <Map onClick={this.addMarker} center={this.state.position} zoom={12} >
         <TileLayer
